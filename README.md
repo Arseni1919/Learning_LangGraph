@@ -4,6 +4,8 @@
 
 Here, I list all the important points that I've learned from the course.
 
+The initial setup instructions can be found in [SETUP.md](SETUP.md).
+
 ## Tavily
 
 A nice specialized for LLMs tool for a websearch.
@@ -43,6 +45,92 @@ for i in {1..6}; do
   echo "OPENAI_API_KEY=\"$OPENAI_API_KEY\"" > module-$i/studio/.env
 done
 echo "TAVILY_API_KEY=\"$TAVILY_API_KEY\"" >> module-4/studio/.env
+```
+
+
+## Short-Term Memory
+
+Use `InMemorySaver`: 
+
+```python
+from langgraph.prebuilt import create_react_agent
+from langgraph.checkpoint.memory import InMemorySaver
+
+checkpointer = InMemorySaver() 
+
+
+def get_weather(city: str) -> str:
+    """Get weather for a given city."""
+    return f"It's always sunny in {city}!"
+
+
+agent = create_react_agent(
+    model="anthropic:claude-3-7-sonnet-latest",
+    tools=[get_weather],
+    checkpointer=checkpointer 
+)
+
+# Run the agent
+config = {
+    "configurable": {
+        "thread_id": "1"  
+    }
+}
+
+sf_response = agent.invoke(
+    {"messages": [{"role": "user", "content": "what is the weather in sf"}]},
+    config
+)
+
+# Continue the conversation using the same thread_id
+ny_response = agent.invoke(
+    {"messages": [{"role": "user", "content": "what about new york?"}]},
+    config 
+)
+```
+
+
+## Intro to Production
+
+- `LangGraph` - a library
+- `LangGraph API` - bundles the graph code - enables to access your code within a client
+- `LangGraph Cloud` - hosts the API
+- `LangGraph Studio` - play with the graph
+- `LangGraph SDK` - programmatically interact with your API
+
+## State Schema
+
+There are several options to define the state.
+
+The simplest one is with the `TypedDict`.
+
+```python
+from typing import Literal
+
+class TypedDictState(TypedDict):
+    name: str
+    mood: Literal["happy","sad"]
+```
+
+Next, with `dataclasses` we can use the `state.name` notation:
+
+```python
+from dataclasses import dataclass
+
+@dataclass
+class DataclassState:
+    name: str
+    mood: Literal["happy","sad"]
+```
+
+With `pydantic`, we can actually raise errors when the type is unmatched:
+
+```python
+from pydantic import BaseModel
+
+class PydanticState(BaseModel):
+    name: str
+    mood: Literal['happy', 'sad'] # "happy" or "sad"
 ```
 
 
