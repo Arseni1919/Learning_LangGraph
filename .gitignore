@@ -219,3 +219,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 module-6/deployment/docker-compose.yml
+
+chat.db
+chat.db-shm
+chat.db-wal
