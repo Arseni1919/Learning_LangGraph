@@ -33,6 +33,10 @@ The initial setup instructions can be found in [SETUP.md](SETUP.md).
 Deployment with dockers, CLI, etc.
 
 
+# Tips & Tricks
+
+[TIPS AND TRICKS](TIPS_AND_TRICKS.md)
+
 
 
 
