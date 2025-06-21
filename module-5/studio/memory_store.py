@@ -4,9 +4,11 @@ from langchain_openai import ChatOpenAI
 from langgraph.graph import StateGraph, MessagesState, START, END
 from langgraph.store.base import BaseStore
 import configuration
+from langchain_ollama import ChatOllama
 
 # Initialize the LLM
-model = ChatOpenAI(model="gpt-4o", temperature=0) 
+# model = ChatOpenAI(model="gpt-4o", temperature=0)
+model = ChatOllama(model='llama3.2:latest')
 
 # Chatbot instruction
 MODEL_SYSTEM_MESSAGE = """You are a helpful assistant with memory that provides information about the user. 

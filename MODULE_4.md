@@ -372,4 +372,11 @@ Our goal is to build a lightweight, multi-agent system around chat models that c
 
 ![Screenshot 2024-08-26 at 7.26.33 PM.png](https://cdn.prod.website-files.com/65b8cd72835ceeacd4449a53/66dbb164d61c93d48e604091_research-assistant1.png)
 
+Code: [x_mod_4_research_assistant.ipynb](x_mod_4_research_assistant.ipynb)
 
+
+
+## Credits
+
+- [LangChain | RAG](https://python.langchain.com/docs/tutorials/rag/)
+- []()
