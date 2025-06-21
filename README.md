@@ -30,7 +30,7 @@ The initial setup instructions can be found in [SETUP.md](SETUP.md).
 
 # Deployment (Module 6)
 
-Deployment
+Deployment with dockers, CLI, etc.
 
 
 
